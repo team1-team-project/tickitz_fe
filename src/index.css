@@ -1,13 +1,20 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+
+@layer base {
+  .font-mulish {
+    font-family: "Mulish", sans-serif;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .btn-primary {
+    @apply px-5 py-3 text-white font-bold font-mulish bg-primary rounded-xl hover:bg-[#4515cf] hover:shadow-lg;
+  }
+  .btn-outline-primary {
+    @apply px-5 py-3 text-primary font-bold font-mulish bg-none border-2 border-primary rounded-xl hover:text-white hover:bg-[#4515cf] hover:shadow-lg;
+  }
 }
