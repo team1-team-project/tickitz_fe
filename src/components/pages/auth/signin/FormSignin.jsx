@@ -23,7 +23,7 @@ export const FormSignin = () => {
         <div className=" w-full pb-10 flex flex-col gap-2">
           <img
             src={tickitzLogoMobile}
-            alt=""
+            alt="logo"
             className="sm:hidden self-start pb-6"
           />
           <h3 className="w-full text-4xl font-bold text-black">Sign In</h3>
