@@ -36,40 +36,14 @@ export const ListCinema = () => {
       });
   }, [refetchPagination, page]);
   return (
-    <section className="container h-[110vh] w-full flex flex-col justify-center">
-      <div className="w-full h-[15%]">
+    <section className="container h-[220vh] sm:h-[110vh] w-full flex flex-col justify-center">
+      <div className="w-full h-[5%] sm:h-[15%]">
         <div className="flex flex-col justify-center items-start w-40 gap-2">
           <h2 className="text-[#14142B] text-2xl font-bold">The Cinema</h2>
           <div className="bg-primary w-20 h-1 rounded-xl"></div>
         </div>
       </div>
-      <div className="cinema-row w-full h-[85%] flex flex-wrap gap-5">
-        {/* {cinema?.map((c) => {
-          return (
-            <>
-              <div
-                key={c.id_cinema}
-                className="cinema-card bg-[#f1f1f1] rounded-xl flex flex-col justify-between w-[22rem] h-56 p-5 shadow-xl"
-              >
-                <div className="flex w-full gap-7">
-                  <h2 className="cinema-name text-2xl font-bold">
-                    {c.cinema_name}
-                  </h2>
-                  <p className="cinema-location text-[#6E7191]">
-                    Whatever street No.12, South Purwokerto
-                  </p>
-                </div>
-                <p>{c.cinema_room}</p>
-                <div className="flex items-center justify-between">
-                  <p className="text-lg font-bold">Rp.{c.price}/seat</p>
-                  <Link to={`/cinema/${c.id_cinema}`}>
-                    <button className="btn-primary">See details</button>
-                  </Link>
-                </div>
-              </div>
-            </>
-          );
-        })} */}
+      <div className="cinema-row w-full h-[85%] flex flex-col sm:flex-row sm:flex-wrap gap-5">
         {cinema?.map((c) => {
           return (
             <>
@@ -83,10 +57,12 @@ export const ListCinema = () => {
                   </h2>
                   <div className="flex flex-col">
                     <p className="cinema-city text-[#6E7191]">
-                      South Purwokerto
+                      {c.city[0]?.city ?? "(Empty city)"}
+                      {/* South Purwokerto */}
                     </p>
                     <p className="cinema-city text-[#6E7191]">
-                      Whatever street No.12
+                      {c.city[0]?.address ?? "(Empty address)"}
+                      {/* Whatever street No.12 */}
                     </p>
                   </div>
                 </div>

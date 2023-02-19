@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import fbIcon from "../../../../assets/images/fb-icon.png";
 import googleIcon from "../../../../assets/images/google-icon.png";
 import illuminati from "../../../../assets/images/illuminati.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import tickitzLogoMobile from "../../../../assets/images/tickitz-logo-mobile.png";
 import axios from "axios";
 
 export const FormSignin = () => {
+  const navigate = useNavigate();
   const showPw = () => {
     let x = document.getElementById("pwInput");
     if (x.type === "password") {
@@ -27,10 +28,13 @@ export const FormSignin = () => {
       data: loginForm,
     })
       .then((result) => {
+        // console.log(result.data);
         setLoginForm(result.data);
         localStorage.setItem("@login", JSON.stringify(result.data));
         // alert(result.data.message);
-        alert("Signup success! Enjoy your journey 🥳");
+        alert("Login success! Enjoy your movie 🥳");
+        // navigate("/home")
+        navigate("/cinema");
       })
       .catch((err) => {
         console.log(err);

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import fbIcon from "../../../../assets/images/fb-icon.png";
 import googleIcon from "../../../../assets/images/google-icon.png";
 import illuminati from "../../../../assets/images/illuminati.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import tickitzLogoMobile from "../../../../assets/images/tickitz-logo-mobile.png";
 import axios from "axios";
 
 export const FormSignup = () => {
+  const navigate = useNavigate();
   const showPw = () => {
     let x = document.getElementById("pwInput");
     if (x.type === "password") {
@@ -19,7 +20,7 @@ export const FormSignup = () => {
     name: "",
     email: "",
     password: "",
-    // role: "user"
+    role: "user",
   });
   const handleSignup = (event) => {
     event.preventDefault();
@@ -31,10 +32,24 @@ export const FormSignup = () => {
       .then((result) => {
         console.log(result.data);
         setSignupForm(result.data);
+        alert("Signup success !");
+        navigate("/sign-in");
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+  const enable = () => {
+    const agreeCheckbox = document.getElementById("agreement");
+    const submitBtn = document.getElementById("btn");
+
+    if (agreeCheckbox.checked) {
+      submitBtn.removeAttribute("disabled");
+    } else {
+      // submitBtn.classList.add("active-btn-signup");
+      // submitBtn.disabled = "true";
+      submitBtn.disabled = true;
+    }
   };
   return (
     <section className="form-signup sm:w-5/12 w-full px-3 h-full sm:px-10 font-mulish">
@@ -115,6 +130,7 @@ export const FormSignup = () => {
           </div>
           <div className="agreement flex items-center gap-3 text-lg pb-5">
             <input
+              onClick={enable}
               type="checkbox"
               name="agreement"
               id="agreement"
@@ -125,7 +141,13 @@ export const FormSignup = () => {
               I agree to terms & conditions
             </label>
           </div>
-          <button type="submit" className="btn-primary py-5 text-lg">
+          <button
+            id="btn"
+            type="submit"
+            className="btn-primary py-5 text-lg"
+            // disabled="true"
+            disabled={true}
+          >
             Join for free now
           </button>
           <p className="text-center">

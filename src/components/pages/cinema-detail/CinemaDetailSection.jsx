@@ -10,6 +10,7 @@ export const CinemaDetailSection = () => {
       .get(`http://localhost:5000/api/cinema/${id_cinema}`)
       .then((result) => {
         setCinemaDetail(result.data.data);
+        // console.log(result.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +37,8 @@ export const CinemaDetailSection = () => {
             <span className="text-2xl">{cinemaDetail[0]?.cinema_room}</span>
           </h2>
           <p className="cinema-location text-[#6E7191] pb-6">
-            Whatever street No.12, South Purwokerto
+            {cinemaDetail[0]?.city[0]?.city ?? "(Empty city)"},{" "}
+            {cinemaDetail[0]?.city[0]?.address ?? "(Empty address)"}
           </p>
           <p className="text-lg font-bold pb-10">
             Rp.{cinemaDetail[0]?.price}/seat
