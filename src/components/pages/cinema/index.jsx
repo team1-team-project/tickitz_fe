@@ -6,7 +6,7 @@ export const Cinema = () => {
   return (
     <>
       {/* <Header/> */}
-      <main className="w-full h-[200vh] bg-white font-mulish">
+      <main className="w-full h-[250vh] bg-white font-mulish">
         <HeroCinema />
         <ListCinema />
       </main>
