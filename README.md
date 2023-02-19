@@ -2,7 +2,7 @@
 A Web Application used to order movie tickets online. Tickitz has provided several payment methods ranging from e-wallets, banks and credit cards. Movies that can be ordered are also complete and there are also many cinemas provided. Like ebv.id, Cineone21, Hiflix. These cinemas have also been provided in several areas. If you are interested in using this application, read the guide below.
 
 ## Developed by 
-<img src="./src/assets/icons/logo funaction revisi.png" alt="logo funaction" width="200"/>
+<img src="./src/assets/icons/logo funaction revisi.png" alt="logo funaction" width="300"/>
 
 ## Tech
 ### UI & UX Design
