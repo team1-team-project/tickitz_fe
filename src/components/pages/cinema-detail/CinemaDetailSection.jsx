@@ -17,9 +17,9 @@ export const CinemaDetailSection = () => {
       });
   }, []);
   return (
-    <section className="container w-full h-[70vh] flex flex-col justify-center">
-      <div className="w-full h-full flex ">
-        <div className="w-2/6 h-full flex justify-center items-center">
+    <section className="container w-full h-[100vh] flex flex-col justify-center max-sm:pt-20">
+      <div className="w-full h-full flex flex-col sm:flex-row">
+        <div className="w-full sm:w-2/6 h-full flex justify-center items-center">
           <div className="cinema-img-card w-72 h-96 border-[1px] border-[#DEDEDE] rounded-xl flex items-center justify-center p-8">
             <div className="border-[1px] border-[#dedede] w-full h-full rounded-xl flex items-center justify-center">
               {/* sementara pakai text dulu untuk image cinemanya */}
@@ -31,7 +31,7 @@ export const CinemaDetailSection = () => {
             </div>
           </div>
         </div>
-        <div className="w-4/6 h-full flex flex-col justify-center">
+        <div className="w-full sm:w-4/6 h-full flex flex-col justify-center items-center sm:items-start">
           <h2 className="text-4xl pb-2">
             {cinemaDetail[0]?.cinema_name} :{" "}
             <span className="text-2xl">{cinemaDetail[0]?.cinema_room}</span>
@@ -40,7 +40,7 @@ export const CinemaDetailSection = () => {
             {cinemaDetail[0]?.city[0]?.city ?? "(Empty city)"},{" "}
             {cinemaDetail[0]?.city[0]?.address ?? "(Empty address)"}
           </p>
-          <p className="text-lg font-bold pb-10">
+          <p className="text-xl sm:text-lg font-bold pb-10">
             Rp.{cinemaDetail[0]?.price}/seat
           </p>
         </div>
