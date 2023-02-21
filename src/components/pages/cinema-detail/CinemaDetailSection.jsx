@@ -7,7 +7,8 @@ export const CinemaDetailSection = () => {
   const [cinemaDetail, setCinemaDetail] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/cinema/${id_cinema}`)
+      // .get(`http://localhost:5000/api/cinema/${id_cinema}`)
+      .get(`https://tickitz.herokuapp.com/api/cinema/${id_cinema}`)
       .then((result) => {
         setCinemaDetail(result.data.data);
         // console.log(result.data.data);
