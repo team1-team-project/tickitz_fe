@@ -54,7 +54,7 @@ export default function NowShow() {
                         <div className="flex items-center justify-center p-5">
                           <img
                             className="rounded-lg"
-                            src={`https://tickitz.herokuapp.com/upload/${item.poster}`}
+                            src={`https://res.cloudinary.com/dgr7osmid/image/upload/v1677009093/${item.poster}`}
                             /*onClick={navigate(
                               `/movie-detail/${item.id_movies}`
                             )}
