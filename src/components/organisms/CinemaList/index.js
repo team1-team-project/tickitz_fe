@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCinemas } from "../../../utils/redux/action/movieList";
 import TimeList from "../../molecules/TimeList";
 
@@ -15,17 +15,59 @@ const CinemaList = () => {
     (state) => state.cinemasReducer
   );
   const navigate = useNavigate();
+  // const { id } = useParams();
+  const { id } = "sdaddsadaj";
+  const movie_name = "contohfilm";
+  const day = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   useEffect(() => {
     dispatch(getCinemas(page));
   }, [page]);
 
-  const handleBooking = (id_cinema) => {
+  const handleBooking = (id_cinema, city, price, cinema_name, cinema_room) => {
     if (time === undefined) {
       alert("Please choose show time!");
     } else {
       alert(`${time}, ${id_cinema}`);
-      navigate(`/payment/${"filmspiderman"}/${id_cinema}/${time}`);
+      const date = new Date();
+      const data = {
+        id_movies: id,
+        movie_name,
+        cinema_name,
+        cinema_room,
+        id_cinema,
+        address: city,
+        id_time: time,
+        price,
+        date: `${day[date.getDay()]}, ${date.getDate()} ${
+          month[date.getMonth()]
+        } ${date.getFullYear()}`,
+        hour: `${date.getHours()}:${date.getMinutes()}`,
+      };
+      localStorage.setItem("paymentInfo", JSON.stringify(data));
+      navigate("/payment");
     }
   };
 
@@ -90,7 +132,15 @@ const CinemaList = () => {
                       </div>
                       <button
                         className="btn-primary mt-5 mx-auto block"
-                        onClick={(e) => handleBooking(item.id_cinema)}
+                        onClick={(e) =>
+                          handleBooking(
+                            item.id_cinema,
+                            item.city[0].address,
+                            item.price,
+                            item.cinema_name,
+                            item.cinema_room
+                          )
+                        }
                       >
                         Book now
                       </button>
