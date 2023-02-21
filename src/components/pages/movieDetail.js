@@ -24,7 +24,7 @@ const MovieDetail = () => {
   return (
     <>
       <div className="movieDetail p-[30px]">
-        <div className="w-[100%] object-center sm:flex justify-center w-[100%]">
+        <div className="w-[100%] object-center sm:flex justify-center">
           <div className="border-[1px] rounded-xl ">
             <div className="p-[50px]">
               <img src={require("../../assets/images/home/movieDetail.png")} />
