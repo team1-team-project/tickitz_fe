@@ -1,10 +1,25 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import PaymentInfo from "../../molecules/paymentInfo";
 import PaymentMethod from "../../molecules/paymentMethod";
+import axios from "axios";
 
 const PaymentPage = () => {
+  const [dataProfileDetail, setDataProfileDetail] = useState([]);
+  const login = JSON.parse(localStorage.getItem("@login"));
+  const id = login.data.user.id_profile;
+  console.log(id, "ini dari local storage");
+  console.log(dataProfileDetail, "ini dari useState");
+  useEffect(() => {
+    axios
+      .get(`https://tickitz.herokuapp.com/api/profile/${id}`)
+      .then((res) => {
+        console.log(res.data.data, "Ini dari axios");
+        setDataProfileDetail(res.data.data);
+      })
 
-  
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <body className="container">
@@ -19,7 +34,7 @@ const PaymentPage = () => {
                 </label>
                 <input
                   type="text"
-                  placeholder="Bruce Wayne"
+                  placeholder={dataProfileDetail.first_name}
                   className="input input-bordered w-full"
                 />
               </div>
@@ -29,7 +44,7 @@ const PaymentPage = () => {
                 </label>
                 <input
                   type="email"
-                  placeholder="Type here"
+                  placeholder={dataProfileDetail.email}
                   className="input input-bordered w-full"
                 />
               </div>
@@ -39,7 +54,7 @@ const PaymentPage = () => {
                 </label>
                 <input
                   type="number"
-                  placeholder="+62 81231122"
+                  placeholder={dataProfileDetail.phone}
                   className="input input-bordered w-full"
                 />
               </div>

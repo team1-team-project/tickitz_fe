@@ -34,7 +34,7 @@ const AsideProfile = () => {
 
   return (
     <>
-      <div className="card bg-base-100 shadow-xl max-[375px]:w-[19rem] max-[465px]:w-[20rem] lg:w-[22rem] p-5">
+      <div className="card bg-base-100 shadow-xl max-[375px]:w-[40rem] max-[768px]:w-[50rem] lg:w-[22rem] p-5">
         <div className="flex justify-between pb-4 pt-8">
           <h1>INFO</h1>
           <span>...</span>
@@ -51,7 +51,7 @@ const AsideProfile = () => {
               )
             ) : (
               <img
-                src={require("../../../assets/images/christopher-campbell.jpg")}
+                src={require("../../../assets/images/default.png")}
                 alt="Shoes"
                 className="rounded-full w-[10rem] h-[10rem]"
               />
