@@ -22,6 +22,10 @@ export const FormSignup = () => {
     password: "",
     role: "user",
   });
+  const [validate, setValidate] = useState({
+    error: false,
+    message: "",
+  });
   const handleSignup = (event) => {
     event.preventDefault();
     axios({
@@ -38,6 +42,7 @@ export const FormSignup = () => {
       })
       .catch((err) => {
         console.log(err);
+        setValidate({ error: true, message: err.response.data.message });
       });
   };
   const enable = () => {
@@ -142,6 +147,13 @@ export const FormSignup = () => {
               I agree to terms & conditions
             </label>
           </div>
+
+          {validate.error && (
+            <div className="p-5 w-full text-red-500 bg-red-200 rounded-md font-bold italic duration-200">
+              {validate.message}
+            </div>
+          )}
+
           <button
             id="btn"
             type="submit"
