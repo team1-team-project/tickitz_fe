@@ -10,7 +10,9 @@ const AsideProfile = () => {
   const [imagePrev, setImagePrev] = useState(null);
 
   const [dataProfileDetail, setDataProfileDetail] = useState([]);
-  const id = useParams();
+  const login = JSON.parse(localStorage.getItem("@login"));
+  const id = login.data.user.id_profile;
+  console.log(id, "ini dari local storage");
   console.log(dataProfileDetail, "ini dari useState");
 
   const onImageUpload = (e) => {
@@ -21,9 +23,7 @@ const AsideProfile = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://tickitz.herokuapp.com/api/profile/ef8ef6a6-29a1-41e1-ad15-b975fd940fa9`
-      )
+      .get(`https://tickitz.herokuapp.com/api/profile/${id}`)
       .then((res) => {
         console.log(res.data.data, "Ini dari axios");
         setDataProfileDetail(res.data.data);
@@ -73,7 +73,7 @@ const AsideProfile = () => {
               />
             </div>
             <h1 className="text-[1.2rem] font-bold">
-              {dataProfileDetail.first_name}
+              {dataProfileDetail.first_name} {dataProfileDetail.last_name}
             </h1>
             <p className="">Moviegoers</p>
           </figure>

@@ -3,6 +3,9 @@ import { React, useState } from "react";
 import axios from "axios";
 
 const EditProfile = () => {
+  const login = JSON.parse(localStorage.getItem("@login"));
+  const id = login.data.user.id_profile;
+  console.log(id, "ini dari editProfile");
   const [editFormProfile, setEditFormProfile] = useState({
     first_name: "",
     last_name: "",
@@ -14,7 +17,6 @@ const EditProfile = () => {
     password: "",
     cnfrmPassword: "",
   });
-
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ const EditProfile = () => {
 
       axios({
         method: "PATCH",
-        url: `https://tickitz.herokuapp.com/api/profile/editprofile/ef8ef6a6-29a1-41e1-ad15-b975fd940fa9`,
+        url: `https://tickitz.herokuapp.com/api/profile/editprofile/${id}`,
         headers: {
           "content-type": "multipart/form-data",
         },
