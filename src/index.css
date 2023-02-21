@@ -18,3 +18,9 @@
     @apply px-5 py-3 text-primary font-bold font-mulish bg-none border-2 border-primary rounded-xl hover:text-white hover:bg-[#4515cf] hover:shadow-lg;
   }
 }
+
+.payment-method:checked + label {
+  border-color: black;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
