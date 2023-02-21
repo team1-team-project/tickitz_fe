@@ -13,13 +13,14 @@ const MovieDetail = () => {
     axios
       .get(`https://tickitz.herokuapp.com/api/movie/${movieId}`)
       .then((res) => {
-        setDetailMovies(res.data);
+        console.log(res);
+        setDetailMovies(res.data.data);
       })
       .catch((err) => {
         console.log(`${err}`);
       });
   }, []); //[] jika dependencys dihapus maka looping terus
-  console.log(detailMovies);
+
   return (
     <>
       <div className="movieDetail p-[30px]">
@@ -33,29 +34,29 @@ const MovieDetail = () => {
             <div className="px-[50px]">
               <div className="pb-[30px]">
                 <h1 className="font-bold text-[32px] my-[30px] sm:my-[0px]">
-                  {detailMovies.data.movie_name}
+                  {detailMovies.movie_name}
                 </h1>
-                <h2>{detailMovies.data.id_category}</h2>
+                <h2>{detailMovies.id_category}</h2>
               </div>
 
               <div className="flex mb-[30px]">
                 <div className="mr-[70px]">
                   <h1 className="text-[#8692A6]">Release Date</h1>
-                  <h2>{detailMovies.data.release_date}</h2>
+                  <h2>{detailMovies.release_date}</h2>
                 </div>
                 <div>
                   <h1 className="text-[#8692A6]">Directed by</h1>
-                  <h2>{detailMovies.data.director}</h2>
+                  <h2>{detailMovies.director}</h2>
                 </div>
               </div>
               <div className="flex mb-[30px]">
                 <div className="mr-[30px]">
                   <h1 className="text-[#8692A6]">Duration</h1>
-                  <h2>{detailMovies.data.duration}</h2>
+                  <h2>{detailMovies.duration}</h2>
                 </div>
                 <div>
                   <h1 className="text-[#8692A6]">Cast</h1>
-                  <h2>{detailMovies.data.actor}</h2>
+                  <h2>{detailMovies.actor}</h2>
                 </div>
               </div>
               <hr className="mb-[30px]" />
@@ -63,7 +64,7 @@ const MovieDetail = () => {
                 <div className="w-[100%] sm:w-[50%]">
                   <h1 className="font-[20px] mb-[10px]">Synopsis</h1>
                   <h2 className="w-[100%] sm:w-[50vw]">
-                    {detailMovies.data.synopsis}
+                    {detailMovies.synopsis}
                   </h2>
                 </div>
               </div>
