@@ -6,7 +6,8 @@ export const ListCinema = () => {
   const [cinema, setCinema] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/cinema`)
+      // .get(`http://localhost:5000/api/cinema`)
+      .get(`https://tickitz.herokuapp.com/api/cinema`)
       .then((result) => {
         setCinema(result.data.data);
         // console.log(result.data.data);
@@ -25,7 +26,8 @@ export const ListCinema = () => {
   const [refetchPagination, setRefetchPagination] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/cinema?${page && `page=${page}`}`)
+      // .get(`http://localhost:5000/api/cinema?${page && `page=${page}`}`)
+      .get(`https://tickitz.herokuapp.com/api/cinema?${page && `page=${page}`}`)
       .then((result) => {
         setCinema(result.data.data);
         // console.log(result.data.data);
