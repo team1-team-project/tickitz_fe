@@ -1,0 +1,6 @@
+@media print{
+
+    #action-button, #title {
+    display: none;
+    }
+}

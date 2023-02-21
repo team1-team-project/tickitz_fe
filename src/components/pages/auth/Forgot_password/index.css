@@ -1,0 +1,24 @@
+#auth-form {
+    background-image: url('../../../../assets/images/forgotpassword.png');
+}
+
+
+@media (min-width: 1024px) { 
+    #auth-img{
+        background-image: url('../../../../assets/images/forgotpassword.png');
+        background-repeat: no-repeat;
+    }
+
+    #auth-form {
+        background: none;
+    }
+
+    #auth-bg-overlay {
+        background-image: url('../../../../assets/images/forgotpassword.png');
+        background-repeat: no-repeat;
+    }
+
+    /* input {
+        border:10px solid ;
+    } */
+ }

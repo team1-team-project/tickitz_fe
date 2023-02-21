@@ -7,47 +7,31 @@ import {TbNumber1} from 'react-icons/tb'
 // import { useNavigate } from 'react-router-dom'
 // import auth from '../../../../assets/images/forgotpassword.png'
 import logo from '../../../../assets/images/Vector.png'
+import { useParams } from 'react-router-dom'
 // import { json } from 'stream/consumers'
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
+
+    const {id_profile} = useParams()
   
-      const [userEmail, setUserEmail] = useState({
-        email: "",
-        id_profile: "",
+      const [newPassword, setNewPassword] = useState({
+        password: ""
       })
 
-      const idByEmail = async (e) => {
-        setUserEmail({
-          email: e.target.value
-        })
-        await axios.get(`https://tickitz.herokuapp.com/api/auth/forgotpassword/${userEmail.email}`)
-        .then(
-          res => {
-            console.log(res.data.data.id_profile)
-            setUserEmail({
 
-              ...userEmail,
-              id_profile : res.data.data.id_profile
-            })
-
-            console.log(userEmail.id_profile)
-          })
-      }
-
-      const sendEmail = (e) => {
+      const updatePassword = (e) => {
         e.preventDefault();
 
         axios({
-          url: "http://localhost:5000/api/sendmail",
-          method: "POST",
+          url:`https://tickitz.herokuapp.com/api/auth/resetpassword/${id_profile}`,
+          method:"PATCH",
           data: {
-            email: userEmail.email,
-            message: `<a href="http://localhost:3000/resetpassword/${userEmail.id_profile}" className='bg-primary px-10 py-4 text-center font-bold text-white'>reset your password</a>`
+              password: newPassword.password
           }
+  
         })
         .then(res => res.data.data)
-        .catch(err => console.log(err.message))
-
+        .catch(err => err.message)
       }
       
 
@@ -60,7 +44,6 @@ const ForgotPassword = () => {
                     <div className='flex p-10'>
                         <img src={logo}/>
                     </div>
-          {console.log(userEmail.id_profile)}
                     <h1 className='font-bold text-4xl leading-normal text-white px-20'>Lets reset your password</h1>
                     <p className='text-slate-500'>To be able to use your account again, <br /> please
 complete the following steps.</p>
@@ -73,11 +56,20 @@ complete the following steps.</p>
                 <h2 className='text-lg font-bold md:text-center lg:text-header lg:text-xl lg:text-start'>Fill your Complete Email</h2>
                 <p className='mb-5 mt-3 md:text-center lg:text-slate-500 lg:text-start'>we`ll send a link to your email shortly</p>
 
-                <form onSubmit={sendEmail} className='md:flex md:flex-col md:w-3/4 md:mx-auto lg:w-full'>
+                <form onSubmit={updatePassword} className='md:flex md:flex-col md:w-3/4 md:mx-auto lg:w-full'>
                     <label htmlFor='email' className='lg:text-slate-600 lg:text-sm'>
-                        Email
+                        password
                     </label>
-                    <input onChange={idByEmail}  className='block w-full h-10 mt-2 rounded-2xl py-7 px-3 mb-4 lg:border lg:border-placeholder text-header' type="email" placeholder='Masukan alamat email'/>
+                    <input onChange={(e) => setNewPassword({
+                        password: e.target.value
+                    })}  className='block w-full h-10 mt-2 rounded-2xl py-7 px-3 mb-4 lg:border lg:border-placeholder text-header' type="password" placeholder='enter your new password'/>
+
+                    <label htmlFor='email' className='lg:text-slate-600 lg:text-sm'>
+                        confrim password
+                    </label>
+                    <input onChange={(e) => setNewPassword({
+                        password: e.target.value
+                    })}  className='block w-full h-10 mt-2 rounded-2xl py-7 px-3 mb-4 lg:border lg:border-placeholder text-header' type="password" placeholder='confirm your new password'/>
 
                     <button type='submit' className='mb-4 mt-5 w-full px-4 py-4 text-white rounded-2xl block bg-primary font-semibold'>Send Mail</button>
 
@@ -91,4 +83,4 @@ complete the following steps.</p>
   )
 }
 
-export default ForgotPassword
+export default ResetPassword
