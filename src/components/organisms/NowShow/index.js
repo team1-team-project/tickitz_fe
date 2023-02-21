@@ -8,6 +8,7 @@ export default function NowShow() {
   const [dataMovies, setDataMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const nowYear = new Date().getFullYear();
+  //const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -22,6 +23,12 @@ export default function NowShow() {
         console.log(`${err}`);
       });
   }, []); //[] jika dependencys dihapus maka looping terus
+  /*
+  const handleGotoDetail = (id) => {
+    navigate(`/movie-detail/${id}`);
+  };
+  */
+
   return (
     <>
       <section className="w-screen p-5">
@@ -42,12 +49,17 @@ export default function NowShow() {
               dataMovies.results.map((item) => {
                 return (
                   <div key={item.id_movies} className="p-3">
-                    <Link to="/movie-detail">
+                    <Link to={`/movie-detail/${item.id_movies}`}>
                       <div className="p-2 w-[200px] md:w-[300px] lg:md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
                         <div className="flex items-center justify-center p-5">
                           <img
                             className="rounded-lg"
                             src={`https://tickitz.herokuapp.com/upload/${item.poster}`}
+                            /*onClick={navigate(
+                              `/movie-detail/${item.id_movies}`
+                            )}
+                            bagus digunakan untuk login sign up, karena tidak bisa di open new tab
+                            */
                           />
                         </div>
                       </div>

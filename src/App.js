@@ -14,7 +14,7 @@ function App() {
         <Route path="/admin-edit" element={<AdminEdit />} />
         <Route path="/sign-in" />
         <Route path="/sign-up" />
-        <Route path="/movie-detail" element={<MovieDetail />} />
+        <Route path="/movie-detail/:movieId" element={<MovieDetail />} />
       </Routes>
     </Router>
   );

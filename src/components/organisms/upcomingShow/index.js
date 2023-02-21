@@ -1,7 +1,29 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function UpcomingShow() {
+  const [dataUpcoming, setDataUpcoming] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const nowYear = new Date().getFullYear() + 1;
+  console.log(nowYear);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://tickitz.herokuapp.com/api/movie/?searchBy=release_date&search=${nowYear}&sort_by=id_category`
+      )
+      .then((res) => {
+        setDataUpcoming(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      });
+  }, []); //[] jika dependencys dihapus maka looping terus
+  console.log(dataUpcoming);
+  console.log(isLoading);
   return (
     <>
       <section className=" w-screen p-5">
@@ -52,98 +74,37 @@ export default function UpcomingShow() {
         </div>
         <div className="p-2 h-full">
           <div className="flex px-10 justify-evenly">
-            <div className="p-3">
-              <Link to="/movie-detail">
-                <div className="p-2 w-[200px] md:w-[300px] lg:md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
-                  <div className="flex items-center justify-center p-5">
-                    <img
-                      className="rounded-lg"
-                      src={require("../../../assets/images/home/movie2.png")}
-                    />
+            {isLoading ? (
+              <p>loading...</p>
+            ) : (
+              dataUpcoming.results.map((item) => {
+                return (
+                  <div key={item.id_movies} className="p-3">
+                    <Link to={`/movie-detail/${item.id_movies}`}>
+                      <div className="p-2 w-[200px] md:w-[300px] lg:md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
+                        <div className="flex items-center justify-center p-5">
+                          <img
+                            className="rounded-lg"
+                            src={`https://tickitz.herokuapp.com/upload/${item.poster}`}
+                          />
+                        </div>
+                        <div className="font-bold text-center pt-5">
+                          Spiderman : No Way Home
+                        </div>
+                        <div className="px-5 pt-3 text-center">
+                          Action, Adventure, Sci-fi
+                        </div>
+                        <div className="flex justify-center my-5">
+                          <button className="p-3 border border-[#5F2EEA] text-[#5F2EEA] font-semibold rounded-lg w-full hover:text-white hover:bg-[#5F2EEA]">
+                            Details
+                          </button>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                  <div className="font-bold text-center pt-5">
-                    Spiderman : No Way Home
-                  </div>
-                  <div className="px-5 pt-3 text-center">
-                    Action, Adventure, Sci-fi
-                  </div>
-                  <div className="flex justify-center my-5">
-                    <button className="p-3 border border-[#5F2EEA] text-[#5F2EEA] font-semibold rounded-lg w-full hover:text-white hover:bg-[#5F2EEA]">
-                      Details
-                    </button>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="p-3">
-              <Link to="/movie-detail">
-                <div className="p-2 w-[200px] md:w-[300px] lg:md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
-                  <div className="flex items-center justify-center p-5">
-                    <img
-                      className="rounded-lg"
-                      src={require("../../../assets/images/home/movie2.png")}
-                    />
-                  </div>
-                  <div className="font-bold text-center pt-5">
-                    Spiderman : No Way Home
-                  </div>
-                  <div className="px-5 pt-3 text-center">
-                    Action, Adventure, Sci-fi
-                  </div>
-                  <div className="flex justify-center my-5">
-                    <button className="p-3 border border-[#5F2EEA] text-[#5F2EEA] font-semibold rounded-lg w-full hover:text-white hover:bg-[#5F2EEA]">
-                      Details
-                    </button>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="p-3">
-              <Link to="/movie-detail">
-                <div className="p-2 w-[200px] md:w-[300px] lg:md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
-                  <div className="flex items-center justify-center p-5">
-                    <img
-                      className="rounded-lg"
-                      src={require("../../../assets/images/home/movie2.png")}
-                    />
-                  </div>
-                  <div className="font-bold text-center pt-5">
-                    Spiderman : No Way Home
-                  </div>
-                  <div className="px-5 pt-3 text-center">
-                    Action, Adventure, Sci-fi
-                  </div>
-                  <div className="flex justify-center my-5">
-                    <button className="p-3 border border-[#5F2EEA] text-[#5F2EEA] font-semibold rounded-lg w-full hover:text-white hover:bg-[#5F2EEA]">
-                      Details
-                    </button>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="p-3">
-              <Link to="/movie-detail">
-                <div className="p-2 w-[200px] md:w-[300px] lg:md:w-[300px] bg-white border border-gray-200 rounded-lg shadow ">
-                  <div className="flex items-center justify-center p-5">
-                    <img
-                      className="rounded-lg"
-                      src={require("../../../assets/images/home/movie2.png")}
-                    />
-                  </div>
-                  <div className="font-bold text-center pt-5">
-                    Spiderman : No Way Home
-                  </div>
-                  <div className="px-5 pt-3 text-center">
-                    Action, Adventure, Sci-fi
-                  </div>
-                  <div className="flex justify-center my-5">
-                    <button className="p-3 border border-[#5F2EEA] text-[#5F2EEA] font-semibold rounded-lg w-full hover:text-white hover:bg-[#5F2EEA]">
-                      Details
-                    </button>
-                  </div>
-                </div>
-              </Link>
-            </div>
+                );
+              })
+            )}
           </div>
         </div>
       </section>

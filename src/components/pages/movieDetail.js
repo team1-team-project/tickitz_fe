@@ -1,9 +1,25 @@
+import axios from "axios";
 import React from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import LocationDropdown from "../organisms/detailMovie/location";
 import DateDropdown from "../organisms/detailMovie/time";
 
 const MovieDetail = () => {
+  const { movieId } = useParams();
+  const [detailMovies, setDetailMovies] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`https://tickitz.herokuapp.com/api/movie/${movieId}`)
+      .then((res) => {
+        setDetailMovies(res.data);
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      });
+  }, []); //[] jika dependencys dihapus maka looping terus
+  console.log(detailMovies);
   return (
     <>
       <div className="movieDetail p-[30px]">
@@ -17,29 +33,29 @@ const MovieDetail = () => {
             <div className="px-[50px]">
               <div className="pb-[30px]">
                 <h1 className="font-bold text-[32px] my-[30px] sm:my-[0px]">
-                  Spider-Man: Homecoming
+                  {detailMovies.data.movie_name}
                 </h1>
-                <h2>Adventure, Action, Sci-Fi</h2>
+                <h2>{detailMovies.data.id_category}</h2>
               </div>
 
               <div className="flex mb-[30px]">
                 <div className="mr-[70px]">
                   <h1 className="text-[#8692A6]">Release Date</h1>
-                  <h2>June 28 1999</h2>
+                  <h2>{detailMovies.data.release_date}</h2>
                 </div>
                 <div>
                   <h1 className="text-[#8692A6]">Directed by</h1>
-                  <h2>Jon Watss</h2>
+                  <h2>{detailMovies.data.director}</h2>
                 </div>
               </div>
               <div className="flex mb-[30px]">
                 <div className="mr-[30px]">
                   <h1 className="text-[#8692A6]">Duration</h1>
-                  <h2>2 Hour 13 Minutes</h2>
+                  <h2>{detailMovies.data.duration}</h2>
                 </div>
                 <div>
                   <h1 className="text-[#8692A6]">Cast</h1>
-                  <h2>Tom Holland, Michael Keaton, Robert Downey Jr., ...</h2>
+                  <h2>{detailMovies.data.actor}</h2>
                 </div>
               </div>
               <hr className="mb-[30px]" />
@@ -47,14 +63,7 @@ const MovieDetail = () => {
                 <div className="w-[100%] sm:w-[50%]">
                   <h1 className="font-[20px] mb-[10px]">Synopsis</h1>
                   <h2 className="w-[100%] sm:w-[50vw]">
-                    Thrilled by his experience with the Avengers, Peter returns
-                    home, where he lives with his Aunt May, under the watchful
-                    eye of his new mentor Tony Stark, Peter tries to fall back
-                    into his normal daily routine - distracted by thoughts of
-                    proving himself to be more than just your friendly
-                    neighborhood Spider-Man - but when the Vulture emerges as a
-                    new villain, everything that Peter holds most important will
-                    be threatened.
+                    {detailMovies.data.synopsis}
                   </h2>
                 </div>
               </div>
