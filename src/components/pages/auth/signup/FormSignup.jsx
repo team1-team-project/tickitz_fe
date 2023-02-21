@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import fbIcon from "../../../../assets/images/fb-icon.png";
 import googleIcon from "../../../../assets/images/google-icon.png";
 import illuminati from "../../../../assets/images/illuminati.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import tickitzLogoMobile from "../../../../assets/images/tickitz-logo-mobile.png";
+import axios from "axios";
 
 export const FormSignup = () => {
+  const navigate = useNavigate();
   const showPw = () => {
     let x = document.getElementById("pwInput");
     if (x.type === "password") {
@@ -14,9 +16,45 @@ export const FormSignup = () => {
       x.type = "password";
     }
   };
+  const [signupForm, setSignupForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "user",
+  });
+  const handleSignup = (event) => {
+    event.preventDefault();
+    axios({
+      method: "POST",
+      url: `https://63a3f9ae9704d18da09a463d.mockapi.io/login`,
+      data: signupForm,
+    })
+      .then((result) => {
+        console.log(result.data);
+        setSignupForm(result.data);
+        alert("Signup success !");
+        navigate("/sign-in");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const enable = () => {
+    const agreeCheckbox = document.getElementById("agreement");
+    const submitBtn = document.getElementById("btn");
+
+    if (agreeCheckbox.checked) {
+      submitBtn.removeAttribute("disabled");
+    } else {
+      // submitBtn.classList.add("active-btn-signup");
+      // submitBtn.disabled = "true";
+      submitBtn.disabled = true;
+    }
+  };
   return (
     <section className="form-signup sm:w-5/12 w-full px-3 h-full sm:px-10 font-mulish">
       <form
+        onSubmit={handleSignup}
         action=""
         className="w-full h-full flex flex-col justify-center items-center"
       >
@@ -32,11 +70,33 @@ export const FormSignup = () => {
           Fill your additional details
         </h3>
         <div className="fill-signup w-full flex flex-col gap-5 pb-8">
+          <div className="username flex flex-col gap-3">
+            <label htmlFor="" className="text-[#4E4B66]">
+              Username
+            </label>
+            <input
+              onChange={(e) => {
+                setSignupForm({
+                  ...signupForm,
+                  name: e.target.value,
+                });
+              }}
+              type="text"
+              placeholder="Write your username"
+              className="border-[1px] border-[#DEDEDE] rounded-xl py-5 w-full px-5 placeholder:text-[#A0A3BD] focus:outline-[#5F2EEA]"
+            />
+          </div>
           <div className="email flex flex-col gap-3">
             <label htmlFor="" className="text-[#4E4B66]">
               Email
             </label>
             <input
+              onChange={(e) => {
+                setSignupForm({
+                  ...signupForm,
+                  email: e.target.value,
+                });
+              }}
               type="email"
               placeholder="Write your email"
               className="border-[1px] border-[#DEDEDE] rounded-xl py-5 w-full px-5 placeholder:text-[#A0A3BD] focus:outline-[#5F2EEA]"
@@ -48,6 +108,12 @@ export const FormSignup = () => {
             </label>
             <div className="flex items-center justify-between border-[1px] border-[#DEDEDE] rounded-xl py-5 w-full px-5 placeholder:text-[#A0A3BD] focus:outline-[#5F2EEA]">
               <input
+                onChange={(e) => {
+                  setSignupForm({
+                    ...signupForm,
+                    password: e.target.value,
+                  });
+                }}
                 type="password"
                 placeholder="Write your password"
                 className="w-full h-full focus:outline-none"
@@ -64,6 +130,7 @@ export const FormSignup = () => {
           </div>
           <div className="agreement flex items-center gap-3 text-lg pb-5">
             <input
+              onClick={enable}
               type="checkbox"
               name="agreement"
               id="agreement"
@@ -74,7 +141,15 @@ export const FormSignup = () => {
               I agree to terms & conditions
             </label>
           </div>
-          <button className="btn-primary py-5">Join for free now</button>
+          <button
+            id="btn"
+            type="submit"
+            className="btn-primary py-5 text-lg"
+            // disabled="true"
+            disabled={true}
+          >
+            Join for free now
+          </button>
           <p className="text-center">
             Do you already have an account?{" "}
             <Link to="/sign-in">
