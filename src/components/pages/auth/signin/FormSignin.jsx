@@ -20,6 +20,10 @@ export const FormSignin = () => {
     email: "",
     password: "",
   });
+  // const [validate, setValidate] = useState({
+  //   error: false,
+  //   message: "",
+  // });
   const handleLogin = (event) => {
     event.preventDefault();
     axios({
@@ -38,9 +42,11 @@ export const FormSignin = () => {
         navigate("/cinema");
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.response.data.message);
+        // setValidate(err.response.data.message);
       });
   };
+  // console.log(validate);
   return (
     <section className="form-signup sm:w-5/12 w-full px-3 h-full sm:px-10 font-mulish">
       <form

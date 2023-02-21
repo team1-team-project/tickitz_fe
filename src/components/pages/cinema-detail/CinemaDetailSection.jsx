@@ -24,11 +24,15 @@ export const CinemaDetailSection = () => {
           <div className="cinema-img-card w-72 h-96 border-[1px] border-[#DEDEDE] rounded-xl flex items-center justify-center p-8">
             <div className="border-[1px] border-[#dedede] w-full h-full rounded-xl flex items-center justify-center">
               {/* sementara pakai text dulu untuk image cinemanya */}
-              {/* <img src="" alt="" /> */}
-              <h2 className="text-4xl pb-2">
+              <img
+                src={`https://tickitz.herokuapp.com/upload/1676826668237-_.jpeg`}
+                alt=""
+                className="w-full h-full"
+              />
+              {/* <h2 className="text-4xl pb-2">
                 {cinemaDetail[0]?.cinema_name}
                 <span className="text-sm">image</span>
-              </h2>
+              </h2> */}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+// import cnmImg from "../../../assets/images/ebv-id.png";
 
 export const ListCinema = () => {
   const [cinema, setCinema] = useState([]);
@@ -37,6 +38,8 @@ export const ListCinema = () => {
         // setValidate({ message: err.response.data.message });
       });
   }, [refetchPagination, page]);
+  // const [payment, setPayment] = useState("");
+  // console.log(payment);
   return (
     <section className="container h-[220vh] sm:h-[110vh] w-full flex flex-col justify-center">
       <div className="w-full h-[5%] sm:h-[15%]">
@@ -45,7 +48,7 @@ export const ListCinema = () => {
           <div className="bg-primary w-20 h-1 rounded-xl"></div>
         </div>
       </div>
-      <div className="cinema-row w-full h-[85%] flex flex-col sm:flex-row sm:flex-wrap gap-5">
+      <div className="cinema-row w-full h-[85%] flex flex-col items-center sm:flex-row sm:flex-wrap gap-5">
         {cinema?.map((c) => {
           return (
             <>
@@ -54,9 +57,17 @@ export const ListCinema = () => {
                 className="cinema-card bg-[#f1f1f1] rounded-xl flex flex-col justify-between w-[22rem] h-56 p-5 shadow-xl"
               >
                 <div className="flex w-full justify-between gap-7 ">
-                  <h2 className="cinema-name text-2xl font-bold">
+                  <div className=" flex justify-center items-center w-40 h-20 bg-red-300">
+                    {/* <img src={cnmImg} alt="" /> */}
+                    <img
+                      // src={`https://tickitz.herokuapp.com/upload/ebv-id.png`}
+                      alt=""
+                      className="w-full h-full"
+                    />
+                  </div>
+                  {/* <h2 className="cinema-name text-2xl font-bold">
                     {c.cinema_name}
-                  </h2>
+                  </h2> */}
                   <div className="flex flex-col">
                     <p className="cinema-city text-[#6E7191]">
                       {c.city[0]?.city ?? "(Empty city)"}
@@ -118,6 +129,55 @@ export const ListCinema = () => {
           4
         </button>
       </div>
+      {/* TUTOR UNTUK PAYMENT OPTION */}
+      {/* <form className="grid grid-cols-3 gap-2 w-full max-w-screen-sm">
+        <div>
+          <input
+            onChange={() => setPayment("Google Pay")}
+            className="hidden payment-method"
+            id="radio_1"
+            type="radio"
+            name="payment-method-input"
+            // checked
+          />
+          <label
+            className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded-md items-center justify-center"
+            htmlFor="radio_1"
+          >
+            <span className="text-xs font-semibold uppercase">Google Pay</span>
+          </label>
+        </div>
+        <div>
+          <input
+            onChange={() => setPayment("Gopay")}
+            className="hidden payment-method"
+            id="radio_2"
+            type="radio"
+            name="payment-method-input"
+          />
+          <label
+            className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded-md items-center justify-center"
+            htmlFor="radio_2"
+          >
+            <span className="text-xs font-semibold uppercase">Gopay</span>
+          </label>
+        </div>
+        <div>
+          <input
+            onChange={() => setPayment("FazzPay")}
+            className="hidden payment-method"
+            id="radio_3"
+            type="radio"
+            name="payment-method-input"
+          />
+          <label
+            className="flex flex-col p-4 border-2 border-gray-400 cursor-pointer rounded-md items-center justify-center"
+            htmlFor="radio_3"
+          >
+            <span className="text-xs font-semibold uppercase">FazzPay</span>
+          </label>
+        </div>
+      </form> */}
     </section>
   );
 };
