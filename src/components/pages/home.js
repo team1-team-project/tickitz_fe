@@ -5,7 +5,7 @@ import React from "react";
 
 import HomeHeader from "../organisms/homeHeader";
 import NowShow from "../organisms/NowShow";
-import UpcomingShow from "../organisms/upcomingShow";
+// import UpcomingShow from "../organisms/upcomingShow";
 import Header from "../organisms/Header";
 import Moviegoers from "../organisms/MoviegoersCard";
 import Footer from "../organisms/Footer";
@@ -18,7 +18,7 @@ const Home = () => {
         <div>
           <HomeHeader />
           <NowShow />
-          <UpcomingShow />
+          {/* <UpcomingShow /> */}
         </div>
       </main>
       <Moviegoers />

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from "react";
 const AdminEdit = () => {
   return (
@@ -21,7 +22,7 @@ const AdminEdit = () => {
                       Movie Name
                     </span>
                     <input
-                      className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                      className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                       id="email"
                       type="text"
                       placeholder=""
@@ -32,7 +33,7 @@ const AdminEdit = () => {
                       Category
                     </span>
                     <input
-                      className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                      className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                       id="email"
                       type="text"
                       placeholder=""
@@ -44,7 +45,7 @@ const AdminEdit = () => {
                         Release Date
                       </span>
                       <input
-                        className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                        className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                         id="email"
                         type="text"
                         placeholder=""
@@ -55,7 +56,7 @@ const AdminEdit = () => {
                         Duration
                       </span>
                       <input
-                        className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                        className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                         id="email"
                         type="text"
                         placeholder=""
@@ -70,7 +71,7 @@ const AdminEdit = () => {
                     Director
                   </span>
                   <input
-                    className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                    className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                     id="email"
                     type="text"
                     placeholder=""
@@ -81,7 +82,7 @@ const AdminEdit = () => {
                     Casts
                   </span>
                   <input
-                    className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                    className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                     id="email"
                     type="text"
                     placeholder=""
@@ -93,7 +94,7 @@ const AdminEdit = () => {
                   Synopsis
                 </span>
                 <input
-                  className="h-[120px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                  className="h-[120px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                   id="email"
                   type="text"
                   placeholder=""
