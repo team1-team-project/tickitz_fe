@@ -116,7 +116,9 @@ export const FormSignin = () => {
           </div>
           {/* <Link to="/sign-in"> */}
           <p className=" text-[#5F2EEA] cursor-pointer underline pb-5">
+            <Link to="/forgotpassword" >
             Forgot your password?
+            </Link>
           </p>
           {/* </Link> */}
           <button type="submit" className="btn-primary py-5">
