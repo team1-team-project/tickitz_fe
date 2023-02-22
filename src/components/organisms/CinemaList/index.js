@@ -50,7 +50,7 @@ const CinemaList = () => {
     if (time === undefined) {
       alert("Please choose show time!");
     } else {
-      alert(`${time}, ${id_cinema}`);
+      // alert(`${time}, ${id_cinema}`);
       const date = new Date();
       const data = {
         id_movies: id,
@@ -67,7 +67,7 @@ const CinemaList = () => {
         hour: `${date.getHours()}:${date.getMinutes()}`,
       };
       localStorage.setItem("paymentInfo", JSON.stringify(data));
-      navigate("/payment");
+      navigate(`/order/${JSON.parse(localStorage)}`);
     }
   };
 
@@ -107,7 +107,7 @@ const CinemaList = () => {
                     >
                       <div className="flex items-center space-x-6">
                         <img
-                          src={require("../../../assets/icons/ebv-logo.webp")}
+                          src={`https://tickitz.herokuapp.com/upload/${item.cinema_name}.webp`}
                           alt="logo ebv"
                           className="w-[30%]"
                         />

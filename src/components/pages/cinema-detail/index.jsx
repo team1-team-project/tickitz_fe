@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { CinemaDetailSection } from "./CinemaDetailSection";
+import Header from '../../organisms/Header'
+import Footer from '../../organisms/Footer'
+import MovieList from '../../organisms/MoviesList'
 
 export const CinemaDetail = () => {
+  const [dataCinema, setDataCinema] = useState()
+
   return (
     <>
-      {/* <Header/> */}
-      <main className="w-full h-[200vh] bg-white font-mulish">
-        <CinemaDetailSection />
+      <Header active='Cinemas'/>
+      <main className="w-full bg-white font-mulish">
+        <CinemaDetailSection setData={setDataCinema} />
+        <MovieList dataCinema={dataCinema}/>
       </main>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   );
 };

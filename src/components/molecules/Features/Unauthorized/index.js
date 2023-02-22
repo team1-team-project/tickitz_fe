@@ -2,11 +2,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Unauthorized = ({ active }) => {
   const [search, setSearch] = useState();
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     alert(query);
@@ -54,12 +55,7 @@ const Unauthorized = ({ active }) => {
         </Link> */}
         <button
           className="btn-primary min-w-max px-8"
-          onClick={() =>
-            localStorage.setItem(
-              "@userLogin",
-              JSON.stringify({ images: "avatar.webp" })
-            )
-          }
+          onClick={() => navigate("/sign-up")}
         >
           Sign Up
         </button>

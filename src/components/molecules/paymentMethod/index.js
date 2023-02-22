@@ -2,27 +2,36 @@
 /* eslint-disable no-undef */
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PaymentMethod = () => {
   const [payment, setPayment] = useState();
-  console.log(payment);
+  // console.log(payment);
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const addPayment = new FormData(e.target);
+    const data = JSON.parse(localStorage.getItem("paymentInfo"));
+    const addPayment = new URLSearchParams(data);
     //editProfile.append("email", editFormProfile.email);
+    addPayment.append(
+      "total_payment",
+      JSON.parse(localStorage.getItem("paymentInfo")).price *
+        JSON.parse(localStorage.getItem("paymentInfo")).seat.length
+    );
     addPayment.append("id_payment", payment);
 
     axios({
       method: "POST",
       url: `https://tickitz.herokuapp.com/api/booking`,
-      headers: {
-        "content-type": "multipart/form-data",
-      },
+      // headers: {
+      //   "content-type": "multipart/form-data",
+      // },
       data: addPayment,
     })
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
+        navigate(`/order/${res.data.data[0].id_booking}`);
       })
       .catch((err) => {
         console.log(err.message);

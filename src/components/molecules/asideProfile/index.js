@@ -4,10 +4,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const AsideProfile = () => {
   const [images, setImages] = useState("");
   const [imagePrev, setImagePrev] = useState(null);
+  const dispatch = useDispatch();
 
   const [dataProfileDetail, setDataProfileDetail] = useState([]);
   const login = JSON.parse(localStorage.getItem("@login"));
@@ -19,6 +21,7 @@ const AsideProfile = () => {
     const file = e.target.files[0];
     setImagePrev(URL.createObjectURL(file));
     setImages(file);
+    dispatch({ type: "SET_IMAGE", image: file });
   };
 
   useEffect(() => {
@@ -51,9 +54,9 @@ const AsideProfile = () => {
               )
             ) : (
               <img
-                src={require("../../../assets/images/default.png")}
+                src={`https://res.cloudinary.com/dgr7osmid/image/upload/v1677007606/${dataProfileDetail.images}`}
                 alt="Shoes"
-                className="rounded-full w-[10rem] h-[10rem]"
+                className="rounded-full w-[10rem] h-[10rem] object-cover"
               />
             )}
             <div className="flex justify-center">
@@ -73,7 +76,10 @@ const AsideProfile = () => {
               />
             </div>
             <h1 className="text-[1.2rem] font-bold">
-              {dataProfileDetail.first_name} {dataProfileDetail.last_name}
+              {dataProfileDetail.first_name != "null" &&
+                dataProfileDetail.first_name}{" "}
+              {dataProfileDetail.last_name != "null" &&
+                dataProfileDetail.last_name}
             </h1>
             <p className="">Moviegoers</p>
           </figure>

@@ -1,4 +1,4 @@
-const initialState = { loading: false, data: [], error: [] };
+const initialState = { loading: false, data: [], error: [], image: false };
 
 export const profileIdReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -19,6 +19,11 @@ export const profileIdReducer = (state = initialState, action = {}) => {
         loading: false,
         data: [],
         error: action.payload,
+      };
+    case "SET_IMAGE":
+      return {
+        ...state,
+        image: action.image,
       };
 
     default:

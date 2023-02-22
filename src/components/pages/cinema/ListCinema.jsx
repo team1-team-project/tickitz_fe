@@ -57,12 +57,12 @@ export const ListCinema = () => {
                 className="cinema-card bg-[#f1f1f1] rounded-xl flex flex-col justify-between w-[22rem] h-56 p-5 shadow-xl"
               >
                 <div className="flex w-full justify-between gap-7 ">
-                  <div className=" flex justify-center items-center w-40 h-20 bg-red-300">
+                  <div className=" flex justify-center items-center w-40 h-20">
                     {/* <img src={cnmImg} alt="" /> */}
                     <img
-                      // src={`https://tickitz.herokuapp.com/upload/ebv-id.png`}
+                      src={`https://tickitz.herokuapp.com/upload/${c.cinema_name}.webp`}
                       alt=""
-                      className="w-full h-full"
+                      className="w-full"
                     />
                   </div>
                   {/* <h2 className="cinema-name text-2xl font-bold">

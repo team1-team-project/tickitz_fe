@@ -7,7 +7,7 @@ const Features = ({ active }) => {
   const [isLogin, setIsLogin] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem("@userLogin")) {
+    if (localStorage.getItem("@login")) {
       setIsLogin(true);
     } else {
       setIsLogin(false);

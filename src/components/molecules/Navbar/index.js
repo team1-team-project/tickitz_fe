@@ -8,7 +8,7 @@ const Navbar = ({ active }) => {
       <nav>
         <ul className="flex space-x-12">
           <Navlink active={active} label="Movies" href="/" />
-          <Navlink active={active} label="Cinemas" href="/cinemas" />
+          <Navlink active={active} label="Cinemas" href="/cinema" />
         </ul>
       </nav>
     </>

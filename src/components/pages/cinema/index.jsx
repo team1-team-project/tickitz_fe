@@ -2,6 +2,8 @@ import React from "react";
 // import { useNavigate } from "react-router-dom";
 import { HeroCinema } from "./HeroCinema";
 import { ListCinema } from "./ListCinema";
+import Header from "../../organisms/Header";
+import Footer from "../../organisms/Footer"
 
 export const Cinema = () => {
   // const navigate = useNavigate();
@@ -11,12 +13,12 @@ export const Cinema = () => {
   // }
   return (
     <>
-      {/* <Header/> */}
+      <Header active={'Cinemas'}/>
       <main className="w-full h-[400vh] sm:h-[250vh] bg-white font-mulish">
         <HeroCinema />
         <ListCinema />
       </main>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   );
 };

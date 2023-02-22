@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getMovies } from "../../../utils/redux/action/movieList";
 import TimeList from "../../molecules/TimeList";
 
-const MoviesList = () => {
+const MoviesList = ({ dataCinema }) => {
   const dispatch = useDispatch();
   const { getMovieLoading, getMovieResult, getMovieError } = useSelector(
     (state) => state.cinemasReducer
@@ -16,13 +17,60 @@ const MoviesList = () => {
   const [movie, setMovie] = useState();
   let [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const { id_cinema } = useParams();
+  const day = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-  const handleBooking = (id_movies) => {
+  const handleBooking = (id_movies, movie_name) => {
+    // e.preventDefault();
     if (time === undefined) {
       alert("Please choose show time!");
     } else {
-      alert(`${time}, ${id_movies}`);
-      navigate(`/payment/${"cinema 1"}/${id_movies}/${time}`);
+      // alert(id_cinema);
+      // alert(`${time}, ${id_movies}`);
+      // console.log(dataCinema[0]);
+      const date = new Date();
+      console.log(JSON.parse(localStorage.getItem("@login")));
+      const data = {
+        id_movies: id_movies,
+        id_profile: JSON.parse(localStorage.getItem("@login")).data.user
+          .id_profile,
+        movie_name,
+        cinema_name: dataCinema[0].cinema_name,
+        cinema_room: dataCinema[0].cinema_room,
+        id_room: id_cinema,
+        address: dataCinema[0].city[0].address,
+        id_time: time,
+        price: dataCinema[0].price,
+        date: `${day[date.getDay()]}, ${date.getDate()} ${
+          month[date.getMonth()]
+        } ${date.getFullYear()}`,
+        hour: `${date.getHours()}:${date.getMinutes()}`,
+        seat: [],
+      };
+      localStorage.setItem("paymentInfo", JSON.stringify(data));
+      navigate("/order");
     }
   };
 
@@ -81,7 +129,9 @@ const MoviesList = () => {
                       />
                       <button
                         className="btn-primary mt-5 mx-auto block"
-                        onClick={() => handleBooking(item.id_movies)}
+                        onClick={() =>
+                          handleBooking(item.id_movies, item.movie_name)
+                        }
                       >
                         Book now
                       </button>

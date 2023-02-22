@@ -7,7 +7,7 @@ const Authorized = ({ active, logout }) => {
   const [search, setSearch] = useState();
   const [query, setQuery] = useState("");
   const handleLogout = () => {
-    localStorage.removeItem("@userLogin");
+    localStorage.removeItem("@login");
     logout(false);
   };
 
@@ -25,9 +25,9 @@ const Authorized = ({ active, logout }) => {
             <option disabled selected>
               Choose a location
             </option>
-            <option>Svelte</option>
-            <option>Vue</option>
-            <option>React</option>
+            <option>Jakarta</option>
+            <option>Tangerang</option>
+            <option>Bandung</option>
           </select>
         )}
         {search ? (
@@ -58,7 +58,7 @@ const Authorized = ({ active, logout }) => {
               <div className="w-16 rounded-full">
                 <img
                   src={`https://tickitz.herokuapp.com/upload/${
-                    JSON.parse(localStorage.getItem("@userLogin")).images ||
+                    JSON.parse(localStorage.getItem("@login")).images ||
                     "avatar.webp"
                   }`}
                 />

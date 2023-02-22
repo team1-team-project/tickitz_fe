@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export const CinemaDetailSection = () => {
+export const CinemaDetailSection = ({setData}) => {
   const { id_cinema } = useParams();
   const [cinemaDetail, setCinemaDetail] = useState([]);
   useEffect(() => {
@@ -11,6 +12,7 @@ export const CinemaDetailSection = () => {
       .get(`https://tickitz.herokuapp.com/api/cinema/${id_cinema}`)
       .then((result) => {
         setCinemaDetail(result.data.data);
+        setData(result.data.data)
         // console.log(result.data.data);
       })
       .catch((err) => {
@@ -18,16 +20,16 @@ export const CinemaDetailSection = () => {
       });
   }, []);
   return (
-    <section className="container w-full h-[100vh] flex flex-col justify-center max-sm:pt-20">
+    <section className="container w-full h-[100vh] md:h-auto md:py-20 flex flex-col justify-center max-sm:pt-20">
       <div className="w-full h-full flex flex-col sm:flex-row">
         <div className="w-full sm:w-2/6 h-full flex justify-center items-center">
           <div className="cinema-img-card w-72 h-96 border-[1px] border-[#DEDEDE] rounded-xl flex items-center justify-center p-8">
             <div className="border-[1px] border-[#dedede] w-full h-full rounded-xl flex items-center justify-center">
               {/* sementara pakai text dulu untuk image cinemanya */}
               <img
-                src={`https://tickitz.herokuapp.com/upload/1676826668237-_.jpeg`}
+                src={`https://tickitz.herokuapp.com/upload/${cinemaDetail[0]?.cinema_name}.webp`}
                 alt=""
-                className="w-full h-full"
+                className="w-full"
               />
               {/* <h2 className="text-4xl pb-2">
                 {cinemaDetail[0]?.cinema_name}

@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { React, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const EditProfile = () => {
   const login = JSON.parse(localStorage.getItem("@login"));
   const id = login.data.user.id_profile;
-  console.log(id, "ini dari editProfile");
+  // console.log(id, "ini dari editProfile");
+  const { image } = useSelector((state) => state.profileIdUser);
   const [editFormProfile, setEditFormProfile] = useState({
     first_name: "",
     last_name: "",
@@ -20,6 +22,7 @@ const EditProfile = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // console.log(image);
     if (editPassword.password !== editPassword.cnfrmPassword) {
       alert("password tidak sama");
     } else {
@@ -28,6 +31,7 @@ const EditProfile = () => {
       editProfile.append("first_name", editFormProfile.first_name);
       editProfile.append("last_name", editFormProfile.last_name);
       editProfile.append("phone", editFormProfile.phone);
+      editProfile.append("images", image);
 
       axios({
         method: "PATCH",
