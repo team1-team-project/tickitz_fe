@@ -127,7 +127,7 @@ const OrderPage = () => {
                       className="rounded-2xl"
                       type="checkbox"
                     />
-                    <input onClick={collectSeat} id="C2" type="checkbox" />
+                    <input onClick={collectSeat} id="30" type="checkbox" />
                     <input onClick={collectSeat} id="C3" type="checkbox" />
                     <input onClick={collectSeat} id="C4" type="checkbox" />
                     <input onClick={collectSeat} id="C5" type="checkbox" />
