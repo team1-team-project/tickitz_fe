@@ -1,7 +1,10 @@
+/* eslint-disable no-undef */
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../organisms/Header";
+import SalesChart from "../organisms/SalesCharts";
 const AdminAdd = () => {
   const navigate = useNavigate();
   const [fileImage, setFileImage] = useState("");
@@ -67,9 +70,11 @@ const AdminAdd = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("@login")) {
-      navigate("/");
+      navigate("/sign-in");
     } else {
-      if (JSON.parse(localStorage.getItem("@login")).role !== "admin") {
+      if (
+        JSON.parse(localStorage.getItem("@login")).data.user.role !== "admin"
+      ) {
         navigate("/");
       }
     }
@@ -77,6 +82,7 @@ const AdminAdd = () => {
 
   return (
     <>
+      <Header />
       <main className="py-5 bg-[#F5F6F8]">
         <form
           onSubmit={handleAddMovie}
@@ -142,7 +148,7 @@ const AdminAdd = () => {
                       Movie Name
                     </span>
                     <input
-                      className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                      className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                       id="name"
                       type="text"
                       placeholder=""
@@ -159,7 +165,7 @@ const AdminAdd = () => {
                       Category
                     </span>
                     <input
-                      className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                      className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                       id="category"
                       type="text"
                       placeholder=""
@@ -177,7 +183,7 @@ const AdminAdd = () => {
                         Release Date
                       </span>
                       <input
-                        className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                        className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                         id="release"
                         type="text"
                         placeholder=""
@@ -194,7 +200,7 @@ const AdminAdd = () => {
                         Duration
                       </span>
                       <input
-                        className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                        className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                         id="duration"
                         type="text"
                         placeholder=""
@@ -215,7 +221,7 @@ const AdminAdd = () => {
                     Director
                   </span>
                   <input
-                    className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                    className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                     id="director"
                     type="text"
                     placeholder=""
@@ -232,7 +238,7 @@ const AdminAdd = () => {
                     Casts
                   </span>
                   <input
-                    className="h-[50px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                    className="h-[50px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                     id="cast"
                     type="text"
                     placeholder=""
@@ -250,7 +256,7 @@ const AdminAdd = () => {
                   Synopsis
                 </span>
                 <input
-                  className="h-[120px] appearance-none border h-[65px] rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
+                  className="h-[120px] appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
                   id="synopsis"
                   type="text"
                   placeholder=""
@@ -335,13 +341,13 @@ const AdminAdd = () => {
                       </div>
                       <div className="flex">
                         <button
-                          className="m-3 border border-[1px] p-5 border-[#5F2EEA] text-[#5F2EEA] rounded-lg w-[120px] hover:text-white hover:bg-[#5F2EEA]"
+                          className="m-3 border p-5 border-[#5F2EEA] text-[#5F2EEA] rounded-lg w-[120px] hover:text-white hover:bg-[#5F2EEA]"
                           type="submit"
                         >
                           Save Movie
                         </button>
 
-                        <button className="m-3 border border-[1px] p-5 border-[#5F2EEA] text-[#5F2EEA] rounded-lg w-[120px] hover:text-white hover:bg-[#5F2EEA]">
+                        <button className="m-3 border p-5 border-[#5F2EEA] text-[#5F2EEA] rounded-lg w-[120px] hover:text-white hover:bg-[#5F2EEA]">
                           cancel
                         </button>
                       </div>
@@ -353,6 +359,7 @@ const AdminAdd = () => {
           </div>
         </form>
       </main>
+      <SalesChart />
     </>
   );
 };

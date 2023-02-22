@@ -5,24 +5,14 @@ import { FormSignin } from "./FormSignin";
 
 export const Signin = () => {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const isLogged = JSON.parse(localStorage.getItem("@login"));
-  //   if (isLogged !== null) {
-  //     // navigate("/cinema");
-  //     // go to previous page
-
-  //   }
-  // }, []);
-
   useEffect(() => {
-    if (localStorage.getItem('@login')) {
-      if (JSON.parse(localStorage.getItem('@login')).data.user.role === "admin") {
-        navigate("/admin-add")
-      } else {
-        navigate(-1);
-      }
+    const isLogged = JSON.parse(localStorage.getItem("@login"));
+    if (isLogged !== null) {
+      // navigate("/cinema");
+      // go to previous page
+      navigate(-1);
     }
-  },[])
+  }, []);
 
   return (
     <main className="w-full sm:h-[130vh] h-[120vh] flex">

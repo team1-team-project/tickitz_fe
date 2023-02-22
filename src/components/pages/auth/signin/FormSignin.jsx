@@ -39,7 +39,12 @@ export const FormSignin = () => {
         // alert(result.data.message);
         alert("Login success! Enjoy your movie 🥳");
         // navigate("/home")
-        navigate("/cinema");
+          if (result.data.data.user.role === "admin") {
+            navigate("/admin-add")
+          } else if (result.data.data.user.role === "user") {
+            navigate("/");
+          }
+
       })
       .catch((err) => {
         alert(err.response.data.message);
