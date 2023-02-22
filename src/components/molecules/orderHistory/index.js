@@ -6,8 +6,13 @@ const OrderHistory = () => {
 
   console.log(dataHistory);
   useEffect(() => {
+    const data = new URLSearchParams();
+    data.append(
+      "id_profile",
+      JSON.parse(localStorage.getItem("@login")).data.user.id_profile
+    );
     axios
-      .get(`https://tickitz.herokuapp.com/api/booking`)
+      .get(`https://tickitz.herokuapp.com/api/history`, data)
       .then((res) => {
         console.log(res.data.data, "Ini dari axios");
         setDataHistory(res.data.data);

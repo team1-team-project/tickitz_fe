@@ -1,10 +1,14 @@
+/* eslint-disable no-undef */
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import LocationDropdown from "../organisms/detailMovie/location";
-import DateDropdown from "../organisms/detailMovie/time";
+// import LocationDropdown from "../organisms/detailMovie/location";
+// import DateDropdown from "../organisms/detailMovie/time";
+import Header from "../organisms/Header";
+import CinemaList from "../organisms/CinemaList";
+import Footer from "../organisms/Footer";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -23,6 +27,7 @@ const MovieDetail = () => {
 
   return (
     <>
+      <Header active="Movies" />
       <div className="movieDetail p-[30px]">
         <div className="w-[100%] object-center sm:flex justify-center">
           <div className="border-[1px] rounded-xl ">
@@ -71,7 +76,7 @@ const MovieDetail = () => {
             </div>
           </div>
         </div>
-        <div className="showtime">
+        {/* <div className="showtime">
           <h1 className="text-[24px] font-bold text-center my-[30px] sm:my-[0px]">
             Showtime and Tickets
           </h1>
@@ -83,8 +88,10 @@ const MovieDetail = () => {
               <LocationDropdown />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
+      <CinemaList dataMovie={detailMovies} />
+      <Footer />
     </>
   );
 };

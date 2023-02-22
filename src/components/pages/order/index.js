@@ -16,7 +16,6 @@ const OrderPage = () => {
 
     setOrderDetail({
       ...orderDetail,
-      id_profile: JSON.parse(localStorage.getItem("@login")).id_profile,
     });
     navigate(`/payment-page`);
   };
@@ -51,7 +50,10 @@ const OrderPage = () => {
           <div>
             <h2 className="font-bold">Movie selected</h2>
             <div className="bg-white rounded-2xl px-5 py-4 flex items-center justify-between mt-5 shadow-lg">
-              <p className="font-semibold">Spider-Man: Homecoming</p>
+              <p className="font-semibold">
+                {localStorage.getItem("paymentInfo") &&
+                  JSON.parse(localStorage.getItem("paymentInfo")).movie_name}
+              </p>
               <Link
                 to="/movies"
                 className="text-primary font-bold py-2 px-4 rounded-xl text-sm  bg-slate-200"
@@ -350,7 +352,12 @@ const OrderPage = () => {
             </div>
             <div className="flex justify-between pt-10 items-center">
               <p className=" text-slate-800 font-bold">Total Payment</p>
-              <p className="text-xl font-bold text-primary">$30</p>
+              <p className="text-xl font-bold text-primary">
+                $
+                {localStorage.getItem("paymentInfo") &&
+                  JSON.parse(localStorage.getItem("paymentInfo")).price *
+                    JSON.parse(localStorage.getItem("paymentInfo")).seat.length}
+              </p>
             </div>
           </div>
         </section>

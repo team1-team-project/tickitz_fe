@@ -6,11 +6,14 @@ import React from "react";
 import HomeHeader from "../organisms/homeHeader";
 import NowShow from "../organisms/NowShow";
 import UpcomingShow from "../organisms/upcomingShow";
-//import Moviegoers from "src/section/Moviegoers";
+import Header from "../organisms/Header";
+import Moviegoers from "../organisms/MoviegoersCard";
+import Footer from "../organisms/Footer";
 
 const Home = () => {
   return (
     <>
+      <Header active="Movies" />
       <main className="">
         <div>
           <HomeHeader />
@@ -18,6 +21,8 @@ const Home = () => {
           <UpcomingShow />
         </div>
       </main>
+      <Moviegoers />
+      <Footer />
     </>
   );
 };

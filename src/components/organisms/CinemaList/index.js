@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
@@ -6,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getCinemas } from "../../../utils/redux/action/movieList";
 import TimeList from "../../molecules/TimeList";
 
-const CinemaList = () => {
+const CinemaList = ({ dataMovie }) => {
   const [time, setTime] = useState();
   const [cinema, setCinema] = useState();
   let [page, setPage] = useState(1);
@@ -15,9 +16,9 @@ const CinemaList = () => {
     (state) => state.cinemasReducer
   );
   const navigate = useNavigate();
-  // const { id } = useParams();
-  const { id } = "sdaddsadaj";
-  const movie_name = "contohfilm";
+  const { movieId } = useParams();
+  // const { id } = "sdaddsadaj";
+  // const movie_name = "contohfilm";
   const day = [
     "Sunday",
     "Monday",
@@ -53,11 +54,13 @@ const CinemaList = () => {
       // alert(`${time}, ${id_cinema}`);
       const date = new Date();
       const data = {
-        id_movies: id,
-        movie_name,
+        id_movies: movieId,
+        id_profile: JSON.parse(localStorage.getItem("@login")).data.user
+          .id_profile,
+        movie_name: dataMovie.movie_name,
         cinema_name,
         cinema_room,
-        id_cinema,
+        id_room: id_cinema,
         address: city,
         id_time: time,
         price,
@@ -65,9 +68,10 @@ const CinemaList = () => {
           month[date.getMonth()]
         } ${date.getFullYear()}`,
         hour: `${date.getHours()}:${date.getMinutes()}`,
+        seat: [],
       };
       localStorage.setItem("paymentInfo", JSON.stringify(data));
-      navigate(`/order/${JSON.parse(localStorage)}`);
+      navigate(`/order`);
     }
   };
 
